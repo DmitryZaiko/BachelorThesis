@@ -1,32 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using BachelorThesis.Models;
+using BachelorThesis.ViewModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace BachelorThesis.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MainService : IDataStore<Item>
     {
         List<Item> items;
 
-        public MockDataStore()
+        public MainService()
         {
-            items = new List<Item>();
-            var mockItems = new List<Item>
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Name = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Sixth item", Description="This is an item description." },
-            };
+        }
 
-            foreach (var item in mockItems)
+        private async Task DoGetRequest(object obj)
+        {
+            URLHttpParams httpParams = (URLHttpParams)obj;
+            string url = httpParams.URL;
+            try
             {
-                items.Add(item);
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = await client.GetAsync(client.BaseAddress);
+                response.EnsureSuccessStatusCode(); // выброс исключения, если произошла ошибка
+
+                // десериализация ответа в формате json
+                var content = await response.Content.ReadAsStringAsync();
+                JObject o = JObject.Parse(content);
+
+                var itemRecords = JsonConvert.DeserializeObject<ItemRecords<Item>>(o.ToString());
+                items = itemRecords.records;
             }
+            catch (Exception ex)
+            { Debug.WriteLine(ex); }
         }
 
         public async Task<bool> AddItemAsync(Item item)
@@ -60,6 +72,7 @@ namespace BachelorThesis.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false, object obj = null)
         {
+            await DoGetRequest(obj);
             return await Task.FromResult(items);
         }
     }

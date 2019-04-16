@@ -15,11 +15,11 @@ namespace BachelorThesis.ViewModels
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public ItemsViewModel(URLHttpParams httpParams)
         {
-            Title = "Browse";
+            Title = httpParams.Title ?? "Browse";
             Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(httpParams));
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
@@ -29,7 +29,7 @@ namespace BachelorThesis.ViewModels
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadItemsCommand(object obj)
         {
             if (IsBusy)
                 return;
@@ -39,7 +39,7 @@ namespace BachelorThesis.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetItemsAsync(true, obj);
                 foreach (var item in items)
                 {
                     Items.Add(item);

@@ -12,7 +12,7 @@ namespace BachelorThesis.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MainService();
 
         bool isBusy = false;
         public bool IsBusy

@@ -27,15 +27,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Name}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Description}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
+                        <StackLayout Padding="10" Orientation="Horizontal">
+                            <Image HeightRequest="100">
+                                <Image.Source>
+                                    <UriImageSource CachingEnabled="False" Uri="{Binding Image}"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" />
+                                <Label Text="{Binding Description}" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -43,3 +48,16 @@
         </ListView>
     </StackLayout>
 </ContentPage>
+
+<!--<ViewCell>
+    <StackLayout Padding="10">
+        <Label Text="{Binding Name}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+        <Label Text="{Binding Description}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+    </StackLayout>
+</ViewCell>-->

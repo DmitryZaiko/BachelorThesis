@@ -22,7 +22,14 @@ namespace BachelorThesis.Views
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new ItemsViewModel(new URLHttpParams("Course"));
+        }
+
+        public ItemsPage(URLHttpParams httpParams)
+        {
+            InitializeComponent();
+
+            BindingContext = viewModel = new ItemsViewModel(httpParams);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -30,8 +37,9 @@ namespace BachelorThesis.Views
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;
-
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            var httpParams = new URLHttpParams("Lesson", item.Id.ToString()) { Title = "Nodarbības" };
+            await Navigation.PushAsync(new ItemsPage(httpParams));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
