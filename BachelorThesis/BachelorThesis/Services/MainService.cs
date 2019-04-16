@@ -23,6 +23,7 @@ namespace BachelorThesis.Services
         {
             URLHttpParams httpParams = (URLHttpParams)obj;
             string url = httpParams.URL;
+            Type t = Type.GetType(httpParams.Type);
             try
             {
                 HttpClient client = new HttpClient();

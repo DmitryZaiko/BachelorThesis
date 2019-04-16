@@ -14,10 +14,11 @@ namespace BachelorThesis.ViewModels
     {
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public ItemPageType PageType { get; set; }
 
-        public ItemsViewModel(URLHttpParams httpParams)
+        public ItemsViewModel(URLHttpParams httpParams = null)
         {
-            Title = httpParams.Title ?? "Browse";
+            Title = "Mani kursi";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(httpParams));
 

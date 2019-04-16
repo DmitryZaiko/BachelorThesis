@@ -22,14 +22,16 @@ namespace BachelorThesis.Views
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel(new URLHttpParams("Course"));
+            BindingContext = viewModel = new ItemsViewModel(new URLHttpParams("Course")){
+                                                        PageType = ItemPageType.Course };
         }
 
-        public ItemsPage(URLHttpParams httpParams)
+        public ItemsPage(URLHttpParams httpParams, ItemPageType pageType)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel(httpParams);
+            BindingContext = viewModel = new ItemsViewModel(httpParams){
+                                                   PageType = pageType };
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -37,9 +39,25 @@ namespace BachelorThesis.Views
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;
-            var httpParams = new URLHttpParams("Lesson", item.Id.ToString()) { Title = "Nodarbības" };
-            await Navigation.PushAsync(new ItemsPage(httpParams));
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+
+            ItemPageType nextPageType;
+
+
+            switch (viewModel.PageType)
+            {
+                case ItemPageType.Course:
+                    nextPageType = ItemPageType.Lesson;
+                    break;
+                case ItemPageType.Lesson:
+                    nextPageType = ItemPageType.Content;
+                    break;
+                default:
+                    nextPageType = ItemPageType.Course;
+                    break;
+            }
+
+            var httpParams = new URLHttpParams(nextPageType, item.Id.ToString());
+            await Navigation.PushAsync(new ItemsPage(httpParams, nextPageType) { Title = "Nodarbības" });
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
