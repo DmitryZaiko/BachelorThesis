@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -51,11 +52,13 @@ namespace BachelorThesis.Services
 
                 MethodInfo generic = method.MakeGenericMethod(t);
                 var test = generic.Invoke(null, new[] { o.ToString() });
-                
 
-
-                var itemRecords = JsonConvert.DeserializeObject<ItemRecords<Item>>(o.ToString());
-                items = itemRecords.records;
+                FieldInfo property = test.GetType().GetFields().First();
+                IEnumerable result = (IEnumerable) property.GetValue(test);
+                items = result.Cast<Item>().ToList();
+             
+                //var itemRecords = JsonConvert.DeserializeObject<ItemRecords<Item>>(o.ToString());
+                //items = itemRecords.records;
             }
             catch (Exception ex)
             { Debug.WriteLine(ex); }

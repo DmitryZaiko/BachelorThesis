@@ -14,7 +14,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
+    <StackLayout x:Name="stackLayout">
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -22,15 +22,18 @@
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
+                CachingStrategy="RecycleElement" 
                 ItemSelected="OnItemSelected">
+            <!-- SelectedItem="{Binding SelectedItem, Mode=TwoWay}"> -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10" Orientation="Horizontal">
                             <Image HeightRequest="100">
                                 <Image.Source>
-                                    <UriImageSource CachingEnabled="False" Uri="{Binding Image}"/>
+                                    <UriImageSource CachingEnabled="True" 
+                                                    CacheValidity="1"
+                                                    Uri="{Binding Image}"/>
                                 </Image.Source>
                             </Image>
                             <StackLayout>

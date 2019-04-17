@@ -2,6 +2,6 @@
 {
     public class Lesson : Item
     {
-        public int CourceId { get; set; }
+        public int CourseId { get; set; }
     }
 }

@@ -10,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using BachelorThesis.Models;
 using BachelorThesis.Views;
 using BachelorThesis.ViewModels;
+using System.Diagnostics;
+using System.Threading;
 
 namespace BachelorThesis.Views
 {
@@ -23,20 +25,38 @@ namespace BachelorThesis.Views
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel(new URLHttpParams("Course")){
-                                                        PageType = ItemPageType.Course };
+                                                        PageType = ItemPageType.Course,
+                                                        Navigation = this.Navigation};
         }
 
         public ItemsPage(URLHttpParams httpParams, ItemPageType pageType)
         {
             InitializeComponent();
-            if(pageType == ItemPageType.Content)
-            {
-                Label label = new Label();
-                Content = label;
-            }
 
-            BindingContext = viewModel = new ItemsViewModel(httpParams){
-                                                   PageType = pageType };
+            viewModel = new ItemsViewModel(httpParams)
+                        {
+                            PageType = pageType,
+                            Navigation = this.Navigation
+                        };
+
+            BindingContext = viewModel;
+
+            if (pageType == ItemPageType.Content)
+            {
+                stackLayout.Children.RemoveAt(0);
+                WebView webView = new WebView();
+                webView.HorizontalOptions = LayoutOptions.FillAndExpand;
+                webView.VerticalOptions = LayoutOptions.FillAndExpand;
+                var source = new HtmlWebViewSource();
+                source.SetBinding(HtmlWebViewSource.HtmlProperty, "Text");
+                webView.Source = source;
+                stackLayout.Children.Add(webView);
+            }   
+        }
+
+        private void OnButtonClicked(object sender, System.EventArgs e)
+        {
+            ((Button)sender).Text = viewModel.Text;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
