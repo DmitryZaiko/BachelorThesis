@@ -29,6 +29,11 @@ namespace BachelorThesis.Views
         public ItemsPage(URLHttpParams httpParams, ItemPageType pageType)
         {
             InitializeComponent();
+            if(pageType == ItemPageType.Content)
+            {
+                Label label = new Label();
+                Content = label;
+            }
 
             BindingContext = viewModel = new ItemsViewModel(httpParams){
                                                    PageType = pageType };
@@ -41,23 +46,27 @@ namespace BachelorThesis.Views
                 return;
 
             ItemPageType nextPageType;
-
+            URLHttpParams httpParams;
+            string title;
 
             switch (viewModel.PageType)
             {
                 case ItemPageType.Course:
                     nextPageType = ItemPageType.Lesson;
+                    title = "Nodarbības";
                     break;
                 case ItemPageType.Lesson:
                     nextPageType = ItemPageType.Content;
+                    title = item.Name;
                     break;
                 default:
                     nextPageType = ItemPageType.Course;
+                    title = "Mani Kursi";
                     break;
             }
 
-            var httpParams = new URLHttpParams(nextPageType, item.Id.ToString());
-            await Navigation.PushAsync(new ItemsPage(httpParams, nextPageType) { Title = "Nodarbības" });
+            httpParams = new URLHttpParams(nextPageType, item.Id.ToString());
+            await Navigation.PushAsync(new ItemsPage(httpParams, nextPageType) { Title = title });
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

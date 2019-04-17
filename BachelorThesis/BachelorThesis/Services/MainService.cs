@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 using BachelorThesis.Models;
 using BachelorThesis.ViewModels;
@@ -23,7 +24,6 @@ namespace BachelorThesis.Services
         {
             URLHttpParams httpParams = (URLHttpParams)obj;
             string url = httpParams.URL;
-            Type t = Type.GetType(httpParams.Type);
             try
             {
                 HttpClient client = new HttpClient();
@@ -34,6 +34,25 @@ namespace BachelorThesis.Services
                 // десериализация ответа в формате json
                 var content = await response.Content.ReadAsStringAsync();
                 JObject o = JObject.Parse(content);
+
+                MethodInfo method = typeof(JsonConvert).GetMethods()
+                                                .Where(m => m.Name == "DeserializeObject")
+                                                .Select(m => new {
+                                                                    Method = m,
+                                                                    Params = m.GetParameters(),
+                                                                    Args = m.GetGenericArguments()
+                                                                 })
+                                                .Where(x => x.Params.Length == 1 &&
+                                                            x.Args.Length == 1)
+                                                .Select(x => x.Method)
+                                                .First();
+                Type t = Type.GetType("BachelorThesis.Models." + httpParams.Type);
+                t = typeof(ItemRecords<>).MakeGenericType(t);
+
+                MethodInfo generic = method.MakeGenericMethod(t);
+                var test = generic.Invoke(null, new[] { o.ToString() });
+                
+
 
                 var itemRecords = JsonConvert.DeserializeObject<ItemRecords<Item>>(o.ToString());
                 items = itemRecords.records;

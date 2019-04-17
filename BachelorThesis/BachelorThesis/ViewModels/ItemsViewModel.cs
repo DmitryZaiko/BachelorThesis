@@ -13,9 +13,10 @@ namespace BachelorThesis.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         public ObservableCollection<Item> Items { get; set; }
+        public Item SelectedItem { get; set; }
         public Command LoadItemsCommand { get; set; }
         public ItemPageType PageType { get; set; }
-
+        
         public ItemsViewModel(URLHttpParams httpParams = null)
         {
             Title = "Mani kursi";
