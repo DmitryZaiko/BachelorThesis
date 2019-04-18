@@ -25,11 +25,11 @@ namespace BachelorThesis.Views
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel(new URLHttpParams("Course")){
-                                                        PageType = ItemPageType.Course,
+                                                        PageType = ItemType.Course,
                                                         Navigation = this.Navigation};
         }
 
-        public ItemsPage(URLHttpParams httpParams, ItemPageType pageType)
+        public ItemsPage(URLHttpParams httpParams, ItemType pageType)
         {
             InitializeComponent();
 
@@ -41,22 +41,36 @@ namespace BachelorThesis.Views
 
             BindingContext = viewModel;
 
-            if (pageType == ItemPageType.Content)
+            if (pageType == ItemType.Content)
             {
                 stackLayout.Children.RemoveAt(0);
+
+                gridView.ColumnDefinitions.Add(new ColumnDefinition()
+                { Width = new GridLength(1, GridUnitType.Star) });
+                Grid.SetColumnSpan(stackLayout, 3);
+
+                ImageButton quizButton = new ImageButton
+                     { BackgroundColor = Color.GreenYellow, Source = "quiz.png" };
+                quizButton.Clicked += OnQuizButtonClicked;
+                gridView.Children.Add(quizButton, 2, 1 );
+
                 WebView webView = new WebView();
                 webView.HorizontalOptions = LayoutOptions.FillAndExpand;
                 webView.VerticalOptions = LayoutOptions.FillAndExpand;
+
                 var source = new HtmlWebViewSource();
                 source.SetBinding(HtmlWebViewSource.HtmlProperty, "Text");
                 webView.Source = source;
+
                 stackLayout.Children.Add(webView);
             }   
         }
 
-        private void OnButtonClicked(object sender, System.EventArgs e)
+        async void OnQuizButtonClicked(object sender, System.EventArgs e)
         {
-            ((Button)sender).Text = viewModel.Text;
+            string id = viewModel.Items.First().Id.ToString();
+            URLHttpParams httpParams = new URLHttpParams(ItemType.Quiz, id);
+            await Navigation.PushModalAsync(new QuizPage(httpParams));
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -65,22 +79,22 @@ namespace BachelorThesis.Views
             if (item == null)
                 return;
 
-            ItemPageType nextPageType;
+            ItemType nextPageType;
             URLHttpParams httpParams;
             string title;
 
             switch (viewModel.PageType)
             {
-                case ItemPageType.Course:
-                    nextPageType = ItemPageType.Lesson;
+                case ItemType.Course:
+                    nextPageType = ItemType.Lesson;
                     title = "Nodarbības";
                     break;
-                case ItemPageType.Lesson:
-                    nextPageType = ItemPageType.Content;
+                case ItemType.Lesson:
+                    nextPageType = ItemType.Content;
                     title = item.Name;
                     break;
                 default:
-                    nextPageType = ItemPageType.Course;
+                    nextPageType = ItemType.Course;
                     title = "Mani Kursi";
                     break;
             }

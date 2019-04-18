@@ -27,7 +27,7 @@
             Params = @params;
         }
 
-        public URLHttpParams(ItemPageType type, string @params = "")
+        public URLHttpParams(ItemType type, string @params = "")
         {
             Type = type.ToString("G");
             Params = @params;

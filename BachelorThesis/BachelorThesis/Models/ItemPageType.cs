@@ -1,9 +1,11 @@
 ﻿namespace BachelorThesis.Models
 {
-    public enum ItemPageType
+    public enum ItemType
     {
         Course,
         Lesson,
-        Content
+        Content,
+        Quiz,
+        QuizAnswer
     }
 }

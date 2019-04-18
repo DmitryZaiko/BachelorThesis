@@ -14,8 +14,18 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout x:Name="stackLayout">
-        <ListView x:Name="ItemsListView"
+    <Grid x:Name="gridView" RowSpacing="0" ColumnSpacing="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackLayout x:Name="stackLayout" Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2">
+            <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -24,32 +34,39 @@
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement" 
                 ItemSelected="OnItemSelected">
-            <!-- SelectedItem="{Binding SelectedItem, Mode=TwoWay}"> -->
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="10" Orientation="Horizontal">
-                            <Image HeightRequest="100">
-                                <Image.Source>
-                                    <UriImageSource CachingEnabled="True" 
+                <!-- SelectedItem="{Binding SelectedItem, Mode=TwoWay}"> -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <Image HeightRequest="100">
+                                    <Image.Source>
+                                        <UriImageSource CachingEnabled="True" 
                                                     CacheValidity="1"
                                                     Uri="{Binding Image}"/>
-                                </Image.Source>
-                            </Image>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" 
+                                    </Image.Source>
+                                </Image>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" 
                                     Style="{DynamicResource ListItemTextStyle}" 
                                     FontSize="16" />
-                                <Label Text="{Binding Description}" 
+                                    <Label Text="{Binding Description}" 
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="13" />
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <ImageButton Grid.Row="1" Grid.Column="0" 
+                     BackgroundColor="LightGray" 
+                     Source="questions.png"/>
+        <ImageButton Grid.Row="1" Grid.Column="1" 
+                     BackgroundColor="LightGray" 
+                     Source="compiler.png" />
+    </Grid>
 </ContentPage>
 
 <!--<ViewCell>
