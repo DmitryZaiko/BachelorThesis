@@ -18,20 +18,21 @@ namespace BachelorThesis.Views
         static int count;
         static int possition;
 
-        bool IsNewPage = true;
-		public QuizPage (URLHttpParams httpParams)
+        bool IsNewPage { get; set; } = true;
+        bool IsComplete { get; set; } = false;
+        public QuizPage (URLHttpParams httpParams)
 		{
 			InitializeComponent ();
             viewModel = new QuizViewModel(httpParams);
             this.BindingContext = viewModel;
 
             MessagingCenter.Subscribe<QuizViewModel>(this, "QuizesLoaded", (sender) => {
-                if (sender.Quizes == null || sender.Quizes.Count < 2)
+                if (sender.Quizes == null || sender.Quizes.Count < 1)
                     return;
                 count = sender.Quizes.Count;
                 possition = 1;
-                ShowNextButton();
             });
+
         }
 
         public QuizPage (QuizViewModel vm)
@@ -39,6 +40,25 @@ namespace BachelorThesis.Views
             InitializeComponent();
             viewModel = vm;
             this.BindingContext = viewModel;
+        }
+
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (IsComplete) return;
+
+            var item = args.SelectedItem as Item;
+            if (viewModel.RightAnswer == item.Id)
+            {
+                IsComplete = true;
+                Reaction.Text = "Correct!";
+                VisualStateManager.GoToState(Reaction, "Correct");
+                ShowNextButton();
+            }
+            else
+            {
+                Reaction.Text = "False!";
+                VisualStateManager.GoToState(Reaction, "Incorrect");
+            };
         }
 
         protected override bool OnBackButtonPressed()
@@ -50,6 +70,7 @@ namespace BachelorThesis.Views
 
         void ShowNextButton()
         {
+            if (possition == count) return;
             nextButton.IsVisible = true;
             nextButton.Text += " (" + possition++ + "/" + count + ")";
         }
@@ -71,7 +92,6 @@ namespace BachelorThesis.Views
             else
             {
                 if (viewModel.Quizes.Count == 0 ) return;
-                ShowNextButton();
                 Item currentQuiz = viewModel.Quizes.Dequeue();
                 viewModel.Question = currentQuiz.Name;
                 URLHttpParams httpParams = new URLHttpParams(viewModel.PageType, currentQuiz.Id.ToString());

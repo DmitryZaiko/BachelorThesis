@@ -69,6 +69,7 @@ namespace BachelorThesis.ViewModels
             finally
             {
                 IsBusy = false;
+                MessagingCenter.Send<ItemsViewModel>(this, "ItemsLoaded");
             }
         }
     }

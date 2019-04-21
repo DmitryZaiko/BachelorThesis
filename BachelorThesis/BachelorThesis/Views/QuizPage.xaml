@@ -12,7 +12,8 @@
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement">
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
                 <!--ItemSelected="OnItemSelected">-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -26,12 +27,34 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label x:Name="Reaction"
+                   FontSize="Large"
+                   VerticalOptions="Start"
+                   HorizontalOptions="CenterAndExpand">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="AnswerStates">
+                        <VisualState x:Name="Correct">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Green" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Incorrect">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Label>
             <Button x:Name="nextButton" 
                     VerticalOptions="End" 
                     HorizontalOptions="Fill"
                     Text="Nākamais"
                     Clicked="OnNextButtonClicked"
                     IsVisible="False"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

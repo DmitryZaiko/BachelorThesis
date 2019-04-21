@@ -14,11 +14,16 @@ namespace BachelorThesis.ViewModels
         public Queue<Item> Quizes { get; set; }
         public Command LoadPageCommand;
         private string question;
+        private int rightAnswer;
 
         public QuizViewModel(URLHttpParams httpParams)
         {
             PageType = ItemType.QuizAnswer;
             LoadPageCommand = new Command(async () => await ExcuteLoadPageCommand(httpParams));
+            MessagingCenter.Subscribe<ItemsViewModel>(this, "ItemsLoaded", (sender) => {
+               Item i = Items.Where(x => ((QuizAnswer)x).IsRight == 0).First();
+               RightAnswer = i.Id;
+            });
         }
 
         public string Question
@@ -31,6 +36,19 @@ namespace BachelorThesis.ViewModels
             set
             {
                 SetProperty(ref question, value);
+            }
+        }
+
+        public int RightAnswer
+        {
+            get
+            {
+                return rightAnswer;
+            }
+
+            set
+            {
+                SetProperty(ref rightAnswer, value);
             }
         }
 
