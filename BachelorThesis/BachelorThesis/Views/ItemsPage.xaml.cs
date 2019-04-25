@@ -12,6 +12,7 @@ using BachelorThesis.Views;
 using BachelorThesis.ViewModels;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections;
 
 namespace BachelorThesis.Views
 {
@@ -19,6 +20,7 @@ namespace BachelorThesis.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
+        bool HaveQuizes { get; set; } = false;
 
         public ItemsPage()
         {
@@ -44,15 +46,12 @@ namespace BachelorThesis.Views
             if (pageType == ItemType.Content)
             {
                 stackLayout.Children.RemoveAt(0);
+                quizButton.IsVisible = true;
 
                 gridView.ColumnDefinitions.Add(new ColumnDefinition()
                 { Width = new GridLength(1, GridUnitType.Star) });
                 Grid.SetColumnSpan(stackLayout, 3);
-
-                ImageButton quizButton = new ImageButton
-                     { BackgroundColor = Color.GreenYellow, Source = "quiz.png" };
-                quizButton.Clicked += OnQuizButtonClicked;
-                gridView.Children.Add(quizButton, 2, 1 );
+                gridView.Children.Add(quizButton, 2, 1);
 
                 WebView webView = new WebView();
                 webView.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -63,6 +62,13 @@ namespace BachelorThesis.Views
                 webView.Source = source;
 
                 stackLayout.Children.Add(webView);
+
+                MessagingCenter.Subscribe<ItemsViewModel, object>(this, "ContentLoaded", (seder, obj) =>
+                {
+                    Content info = ((IEnumerable)obj).Cast<Content>().First();
+                    if (info.Count > 0)
+                        quizButton.IsEnabled = true;
+                });
             }   
         }
 

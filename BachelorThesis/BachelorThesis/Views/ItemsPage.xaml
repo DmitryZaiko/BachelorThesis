@@ -66,6 +66,27 @@
         <ImageButton Grid.Row="1" Grid.Column="1" 
                      BackgroundColor="LightGray" 
                      Source="compiler.png" />
+        <ImageButton x:Name="quizButton"
+                     IsVisible="False"
+                     IsEnabled="False"
+                     Clicked="OnQuizButtonClicked"
+                     Source="quiz.png">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="GreenYellow" />
+                        </VisualState.Setters>
+                    </VisualState>
+                
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkGray" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </ImageButton>
     </Grid>
 </ContentPage>
 

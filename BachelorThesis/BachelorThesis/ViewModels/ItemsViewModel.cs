@@ -60,7 +60,11 @@ namespace BachelorThesis.ViewModels
                 {
                     Items.Add(item);
                 }
-                if (PageType == ItemType.Content) OnPropertyChanged("Text");
+                if (PageType == ItemType.Content) {
+                    OnPropertyChanged("Text");
+                    MessagingCenter.Send<ItemsViewModel, object>(this, "ContentLoaded", items);
+                }
+                MessagingCenter.Send<ItemsViewModel>(this, "ItemsLoaded");
             }
             catch (Exception ex)
             {
@@ -69,7 +73,6 @@ namespace BachelorThesis.ViewModels
             finally
             {
                 IsBusy = false;
-                MessagingCenter.Send<ItemsViewModel>(this, "ItemsLoaded");
             }
         }
     }

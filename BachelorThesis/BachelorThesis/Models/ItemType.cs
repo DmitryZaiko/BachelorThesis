@@ -6,6 +6,7 @@
         Lesson,
         Content,
         Quiz,
-        QuizAnswer
+        QuizAnswer,
+        QuizInfo
     }
 }
