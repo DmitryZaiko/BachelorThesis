@@ -1,4 +1,5 @@
 ﻿using BachelorThesis.Models;
+using BachelorThesis.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +11,7 @@ namespace BachelorThesis.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage : ContentPage
     {
+
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
         public MenuPage()

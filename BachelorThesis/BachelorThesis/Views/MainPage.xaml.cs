@@ -11,11 +11,13 @@ namespace BachelorThesis.Views
     public partial class MainPage : MasterDetailPage
     {
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
-        public MainPage()
+        public MainPage( User user = null)
         {
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
+            Master = new MenuPage() { BindingContext = new ViewModels.UserViewModel(user) };
+           // ((MenuPage)Master).viewModel = new ViewModels.UserViewModel(user);
 
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
         }
@@ -47,5 +49,6 @@ namespace BachelorThesis.Views
                 IsPresented = false;
             }
         }
+
     }
 }

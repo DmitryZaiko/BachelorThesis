@@ -4,9 +4,9 @@
             xmlns:views="clr-namespace:BachelorThesis.Views"
             x:Class="BachelorThesis.Views.MainPage">
 
-    <MasterDetailPage.Master>
+    <!--<MasterDetailPage.Master>
         <views:MenuPage />
-    </MasterDetailPage.Master>
+    </MasterDetailPage.Master>-->
 
     <MasterDetailPage.Detail>
         <NavigationPage>

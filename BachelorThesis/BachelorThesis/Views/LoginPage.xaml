@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BachelorThesis.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Autorizācija" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+            <Entry Text="{Binding  EmailInput}"/>
+            <Entry Text="{Binding PasswordInput}"/>
+            <Button Text="Ieiet" Clicked="OnLoginButtonClicked"/>
+            <Label Text="{Binding ErrorMessage}" 
+                   FontSize="Medium" 
+                   TextColor="DarkRed"
+                   HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
