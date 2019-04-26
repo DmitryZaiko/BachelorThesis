@@ -1,6 +1,6 @@
 ﻿namespace BachelorThesis.Models
 {
-    class LoginError
+    class ErrorMessage
     {
        public int ErrorCode { get; set; }
        public string ErrorDescription { get; set; }

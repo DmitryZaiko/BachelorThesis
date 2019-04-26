@@ -28,9 +28,9 @@ namespace BachelorThesis.ViewModels
             AuthorizationService service = new AuthorizationService();
             object responce = await service.DoLoginRequest(EmailInput, PasswordInput);
 
-            if (responce is LoginError)
+            if (responce is ErrorMessage)
             {
-                LoginError error = responce as LoginError;
+                ErrorMessage error = responce as ErrorMessage;
 
                 switch(error.ErrorCode)
                 {

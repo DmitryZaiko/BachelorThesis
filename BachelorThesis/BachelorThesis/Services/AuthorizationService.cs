@@ -35,13 +35,41 @@ namespace BachelorThesis.Services
 
             if(o.TryGetValue("ErrorCode", out errorCode))
             {
-                var error = JsonConvert.DeserializeObject<LoginError>(o.ToString());
+                var error = JsonConvert.DeserializeObject<ErrorMessage>(o.ToString());
                 return error;
             }
             else
             {
                 var user = JsonConvert.DeserializeObject<User>(o.ToString());
                 Settings.UserSettings = o.ToString();
+                return user;
+            }
+        }
+
+        public async Task<object> DoRegisterRequest(User user)
+        {
+            string json = JsonConvert.SerializeObject(user);
+
+            HttpContent content = new StringContent(json);
+
+            HttpClient client = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage();
+            request.RequestUri = new Uri("http://www.rtu-app-api.ml/api/course/create.php");
+            request.Method = HttpMethod.Post;
+            request.Content = content;
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            json = await response.Content.ReadAsStringAsync();
+            JObject o = JObject.Parse(json);
+            JToken errorCode;
+
+            if (o.TryGetValue("ErrorCode", out errorCode))
+            {
+                var error = JsonConvert.DeserializeObject<ErrorMessage>(o.ToString());
+                return error;
+            }
+            else
+            {
                 return user;
             }
         }
