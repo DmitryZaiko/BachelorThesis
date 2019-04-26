@@ -1,4 +1,5 @@
-﻿using BachelorThesis.Models;
+﻿using BachelorThesis.Helpers;
+using BachelorThesis.Models;
 using BachelorThesis.Services;
 using BachelorThesis.Views;
 using System;
@@ -40,6 +41,7 @@ namespace BachelorThesis.ViewModels
             else
             {
                 User user = responce as User;
+                Settings.IsLoggedIn = true;
                 Application.Current.MainPage = new MainPage(user);
             }
 

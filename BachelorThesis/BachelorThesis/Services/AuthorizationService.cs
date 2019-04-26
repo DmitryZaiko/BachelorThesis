@@ -1,4 +1,5 @@
-﻿using BachelorThesis.Models;
+﻿using BachelorThesis.Helpers;
+using BachelorThesis.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -40,6 +41,7 @@ namespace BachelorThesis.Services
             else
             {
                 var user = JsonConvert.DeserializeObject<User>(o.ToString());
+                Settings.UserSettings = o.ToString();
                 return user;
             }
         }

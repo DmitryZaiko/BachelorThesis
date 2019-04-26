@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BachelorThesis.Helpers;
 
 namespace BachelorThesis.Views
 {
@@ -19,6 +20,22 @@ namespace BachelorThesis.Views
 		{
             viewModel = new LoginViewModel();
 			InitializeComponent ();
+
+            TapGestureRecognizer guestTap = new TapGestureRecognizer();
+            guestTap.Tapped += (s, e) =>
+                {
+                    Application.Current.MainPage = new MainPage(null);
+                    Settings.IsGuest = true;
+                };
+            asAGuestLabel.GestureRecognizers.Add(guestTap);
+
+            TapGestureRecognizer registerTap = new TapGestureRecognizer();
+            registerTap.Tapped += (s, e) =>
+            {
+                Navigation.PushModalAsync(new RegistrationPage());
+            };
+            registrationLabel.GestureRecognizers.Add(registerTap);
+
             this.BindingContext = viewModel;
 		}
 

@@ -2,6 +2,9 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using BachelorThesis.Views;
+using BachelorThesis.Helpers;
+using BachelorThesis.Models;
+using Newtonsoft.Json;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace BachelorThesis
@@ -13,9 +16,18 @@ namespace BachelorThesis
         {
             InitializeComponent();
 
-
-            MainPage = new MainPage();
-            //MainPage = new LoginPage();
+            if (Settings.IsLoggedIn)
+            {
+                User user = JsonConvert.DeserializeObject<User>(Settings.UserSettings);
+                MainPage = new MainPage(user);
+            }
+            else if(Settings.IsGuest){
+                MainPage = new MainPage(null);
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }
         }
 
         protected override void OnStart()

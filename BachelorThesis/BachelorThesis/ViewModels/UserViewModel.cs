@@ -1,4 +1,5 @@
-﻿using BachelorThesis.Models;
+﻿using BachelorThesis.Helpers;
+using BachelorThesis.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +26,7 @@ namespace BachelorThesis.ViewModels
         public UserViewModel(User user)
         {
             User = user;
-            FullUserName = user != null ? User.FirstName + " " + User.LastName : "Guest";
+            FullUserName = Settings.IsLoggedIn ? User.FirstName + " " + User.LastName : "Guest";
         }
     }
 }

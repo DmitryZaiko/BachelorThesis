@@ -1,8 +1,9 @@
-﻿using BachelorThesis.Models;
+﻿using BachelorThesis.Helpers;
+using BachelorThesis.Models;
 using BachelorThesis.ViewModels;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,11 +39,31 @@ namespace BachelorThesis.Views
 
             TapGestureRecognizer tapGesture = new TapGestureRecognizer();
 
-            tapGesture.Tapped += (s, e) =>
+            if (Settings.IsLoggedIn) {
+                profileOption.Text = "Iziet";
+                tapGesture.Tapped += LogOut;
+            } 
+            else
             {
-                Application.Current.MainPage = new LoginPage();
-            };
+                tapGesture.Tapped += LogIn;
+            }
+
             profileOption.GestureRecognizers.Add(tapGesture);
+        }
+
+        private void LogIn(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new LoginPage();
+        }
+        private void LogOut(object sender, EventArgs e)
+        {
+            profileOption.Text = "Autorizēties";
+            Settings.IsLoggedIn = false;
+            Settings.UserSettings = null;
+            this.BindingContext = new UserViewModel(null);
+            Label label = sender as Label;
+            TapGestureRecognizer tapGesture = label.GestureRecognizers.First() as TapGestureRecognizer;
+            tapGesture.Tapped += LogIn;
         }
     }
 }
