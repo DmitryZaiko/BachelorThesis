@@ -5,17 +5,31 @@
              Title="Menu">
     <StackLayout VerticalOptions="FillAndExpand">
         <Grid HeightRequest="80">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="avatar_icon.png" Grid.Column="0" 
+            <Image Source="avatar_icon.png" 
+                   Grid.Column="0" 
+                   Grid.RowSpan="2"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
-            <Label Text="{Binding User.FirstName}" Grid.Column="1"
+            <Label Text="{Binding FullUserName}" 
+                   Grid.Row="0"
+                   Grid.Column="1"
                    FontSize="Medium"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"/>
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            <Label x:Name="profileOption" Text="Autorizēties" 
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   FontSize="Small"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
         </Grid>
         <ListView x:Name="ListViewMenu"
                     HasUnevenRows="True">

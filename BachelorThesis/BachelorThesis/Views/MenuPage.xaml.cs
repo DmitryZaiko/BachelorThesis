@@ -35,6 +35,14 @@ namespace BachelorThesis.Views
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
+
+            TapGestureRecognizer tapGesture = new TapGestureRecognizer();
+
+            tapGesture.Tapped += (s, e) =>
+            {
+                Application.Current.MainPage = new LoginPage();
+            };
+            profileOption.GestureRecognizers.Add(tapGesture);
         }
     }
 }
