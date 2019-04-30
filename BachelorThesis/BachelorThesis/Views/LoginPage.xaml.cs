@@ -36,11 +36,16 @@ namespace BachelorThesis.Views
             };
             registrationLabel.GestureRecognizers.Add(registerTap);
 
+            MessagingCenter.Subscribe<LoginViewModel>(this, "LoginActivityEnded", (sender) => {
+                loginActivity.IsRunning = false;
+            });
+
             this.BindingContext = viewModel;
 		}
 
         private void OnLoginButtonClicked(object sender, EventArgs e)
         {
+            loginActivity.IsRunning = true;
             viewModel.LoginCommand.Execute(null);
         }
     }

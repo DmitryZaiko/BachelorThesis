@@ -19,7 +19,7 @@ namespace BachelorThesis.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(Login);   
+            LoginCommand = new Command(Login);
         }
 
         private async void Login(object obj)
@@ -37,6 +37,7 @@ namespace BachelorThesis.ViewModels
                     case 0: ErrorMessage = "Nevarēja atrast jūsu kontu."; break; 
                     case 1: ErrorMessage = "Parole nav pareiza."; break;
                 }
+                
             }
             else
             {
@@ -44,7 +45,7 @@ namespace BachelorThesis.ViewModels
                 Settings.IsLoggedIn = true;
                 Application.Current.MainPage = new MainPage(user);
             }
-
+            MessagingCenter.Send<LoginViewModel>(this, "LoginActivityEnded");
         }
 
         public string ErrorMessage

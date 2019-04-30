@@ -4,6 +4,7 @@
              x:Class="BachelorThesis.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="labelXX"/>
             <Label Text="Autorizācija" FontSize="Large" HorizontalOptions="CenterAndExpand" />
             <Entry Text="{Binding  EmailInput}" Placeholder="E-pasts"/>
             <Entry Text="{Binding PasswordInput}" Placeholder="Parole" IsPassword="True"/>
@@ -22,6 +23,7 @@
                    FontSize="Medium" 
                    TextColor="DarkGray"
                    HorizontalOptions="CenterAndExpand" />
+            <ActivityIndicator x:Name="loginActivity" IsRunning="False"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

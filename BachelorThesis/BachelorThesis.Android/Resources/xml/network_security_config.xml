@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">www.rtu-app-api.ml(ex: 145.14.145.21)</domain>
+  </domain-config>
+</network-security-config>

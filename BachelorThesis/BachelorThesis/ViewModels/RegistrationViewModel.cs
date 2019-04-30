@@ -41,7 +41,7 @@ namespace BachelorThesis.ViewModels
                 Settings.IsLoggedIn = true;
                 Application.Current.MainPage = new MainPage(user);
             }
-
+            MessagingCenter.Send<RegistrationViewModel>(this, "RegisterActivityEnded");
         }
 
         public string ErrorMessage

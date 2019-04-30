@@ -21,6 +21,11 @@ namespace BachelorThesis.Views
 		{
 			InitializeComponent ();
             viewModel = new RegistrationViewModel();
+
+            MessagingCenter.Subscribe <RegistrationViewModel>(this, "RegisterActivityEnded", (sender) => {
+                registerActivity.IsRunning = false;
+            });
+
             this.BindingContext = viewModel;
             entries = new List<Entry>
             {
@@ -95,8 +100,10 @@ namespace BachelorThesis.Views
 
         private void OnRegisterClicked(object sender, EventArgs e)
         {
-            if(IsAllEntriesValid())
+            registerActivity.IsRunning = true;
+            if (IsAllEntriesValid())
                 viewModel.LoginCommand.Execute(null);
+            else registerActivity.IsRunning = false;
         }
     }
 }

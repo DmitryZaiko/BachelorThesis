@@ -57,6 +57,8 @@
             <Label Text="{Binding ErrorMessage}" FontSize="Medium" 
                    TextColor="DarkRed" HorizontalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"/>
+            <ActivityIndicator x:Name="registerActivity" IsRunning="False"
+                   Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"/>
             <Label Text="Vārds*" FontSize="Medium" 
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="2"/>
@@ -97,6 +99,7 @@
                    Text="{Binding Repeat}" TextChanged="OnRepeatChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"
                    Placeholder="Apstipriniet paroli" Grid.Column="1"  Grid.Row="7"/>
+            
 
             <Button Text="Izveidot" Clicked="OnRegisterClicked" Grid.Row="8" Grid.ColumnSpan="2"/>
 
