@@ -70,6 +70,7 @@ namespace BachelorThesis.Services
             }
             else
             {
+                Settings.UserSettings = o.ToString();
                 return user;
             }
         }

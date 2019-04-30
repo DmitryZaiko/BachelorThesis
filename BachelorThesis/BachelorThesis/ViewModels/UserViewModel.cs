@@ -26,7 +26,7 @@ namespace BachelorThesis.ViewModels
         public UserViewModel(User user)
         {
             User = user;
-            FullUserName = Settings.IsLoggedIn ? User.FirstName + " " + User.LastName : "Guest";
+            FullUserName = Settings.IsLoggedIn ? User?.FirstName + " " + User?.LastName : "Guest";
         }
     }
 }
