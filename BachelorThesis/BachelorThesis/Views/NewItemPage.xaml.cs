@@ -5,30 +5,32 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using BachelorThesis.Models;
+using Newtonsoft.Json;
+using BachelorThesis.Helpers;
+using BachelorThesis.Services;
 
 namespace BachelorThesis.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Question Question { get; set; }
 
         public NewItemPage()
         {
+            User user = JsonConvert.DeserializeObject<User>(Settings.UserSettings);
             InitializeComponent();
 
-            Item = new Item
-            {
-                Name = "Item name",
-                Description = "This is an item description."
-            };
+            Question = new Question();
+            Question.UserId = user.Id;
+            Question.LessonId = null;
 
             BindingContext = this;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            var question = await QuestionsService.DoQuestionsAddRequest(Question);
             await Navigation.PopModalAsync();
         }
 
