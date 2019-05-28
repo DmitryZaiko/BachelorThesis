@@ -8,6 +8,7 @@ using BachelorThesis.Models;
 using Newtonsoft.Json;
 using BachelorThesis.Helpers;
 using BachelorThesis.Services;
+using BachelorThesis.ViewModels;
 
 namespace BachelorThesis.Views
 {
@@ -15,15 +16,16 @@ namespace BachelorThesis.Views
     public partial class NewItemPage : ContentPage
     {
         public Question Question { get; set; }
+        public QuestionsViewModel viewModel { get; set; }
 
-        public NewItemPage()
+        public NewItemPage(int? lessonId)
         {
             User user = JsonConvert.DeserializeObject<User>(Settings.UserSettings);
             InitializeComponent();
 
             Question = new Question();
             Question.UserId = user.Id;
-            Question.LessonId = null;
+            Question.LessonId = lessonId;
 
             BindingContext = this;
         }
@@ -32,6 +34,7 @@ namespace BachelorThesis.Views
         {
             var question = await QuestionsService.DoQuestionsAddRequest(Question);
             await Navigation.PopModalAsync();
+            viewModel.LoadQuestionsCommand.Execute(null);
         }
 
         async void Cancel_Clicked(object sender, EventArgs e)

@@ -4,15 +4,6 @@
              x:Class="BachelorThesis.Views.ItemsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>-->
 
     <Grid x:Name="gridView" RowSpacing="0" ColumnSpacing="1">
         <Grid.RowDefinitions>
@@ -34,7 +25,7 @@
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement" 
                 ItemSelected="OnItemSelected">
-                <!-- SelectedItem="{Binding SelectedItem, Mode=TwoWay}"> -->
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -61,11 +52,11 @@
             </ListView>
         </StackLayout>
         <ImageButton Grid.Row="1" Grid.Column="0" 
-                     BackgroundColor="LightGray" 
+                     BackgroundColor="#3d827d" 
                      Clicked="OnQuestionsButtonClicked"
                      Source="questions.png"/>
         <ImageButton Grid.Row="1" Grid.Column="1" 
-                     BackgroundColor="LightGray" 
+                     BackgroundColor="#3d827d" 
                      Source="compiler.png" />
         <ImageButton x:Name="quizButton"
                      IsVisible="False"
@@ -90,16 +81,3 @@
         </ImageButton>
     </Grid>
 </ContentPage>
-
-<!--<ViewCell>
-    <StackLayout Padding="10">
-        <Label Text="{Binding Name}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-        <Label Text="{Binding Description}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-    </StackLayout>
-</ViewCell>-->

@@ -14,7 +14,7 @@ namespace BachelorThesis.Services
 {
     class QuestionsService
     {
-        public static async Task<object> DoQuestionsGetRequest(int? lessonId = null)
+        public static async Task<object> DoQuestionsGetRequest(int? lessonId)
         {
                 string url = "http://www.rtu-app-api.ml/api/course/read_questions.php";
                 if (lessonId != null)
@@ -75,8 +75,7 @@ namespace BachelorThesis.Services
             }
             else
             {
-                var newQuestion = JsonConvert.DeserializeObject<Question>(o.ToString());
-                Debug.WriteLine("HEADER: " + newQuestion.Header);               
+                var newQuestion = JsonConvert.DeserializeObject<Question>(o.ToString());        
                 return newQuestion;
             }
         }

@@ -81,7 +81,16 @@ namespace BachelorThesis.Views
 
         async void OnQuestionsButtonClicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new QuestionsPage());
+            if(viewModel.PageType == ItemType.Content)
+            {
+                var lessonId = viewModel.Items[0].Id;
+                await Navigation.PushAsync(new QuestionsPage(lessonId));
+            }
+            else
+            {
+                await Navigation.PushAsync(new QuestionsPage());
+            }
+                
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -115,11 +124,6 @@ namespace BachelorThesis.Views
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
         protected override void OnAppearing()

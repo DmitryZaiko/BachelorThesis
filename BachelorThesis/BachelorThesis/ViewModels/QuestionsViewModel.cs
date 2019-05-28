@@ -11,16 +11,17 @@ using Xamarin.Forms;
 
 namespace BachelorThesis.ViewModels
 {
-    class QuestionsViewModel : BaseViewModel
+    public class QuestionsViewModel : BaseViewModel
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Command LoadQuestionsCommand { get; set; }
-        public QuestionsViewModel(URLHttpParams httpParams = null)
+        public int? LessonId { get; set; }
+
+        public QuestionsViewModel()
         {
             Questions = new ObservableCollection<Question>();
             LoadQuestionsCommand = new Command(async (args) => {
-                httpParams = (URLHttpParams)args ?? httpParams;
-                await ExecuteLoadQuestionsCommand(httpParams);
+                await ExecuteLoadQuestionsCommand();
             });
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
@@ -31,7 +32,7 @@ namespace BachelorThesis.ViewModels
             });
         }
 
-        protected async Task ExecuteLoadQuestionsCommand(object obj)
+        protected async Task ExecuteLoadQuestionsCommand()
         {
             if (IsBusy)
                 return;
@@ -41,7 +42,7 @@ namespace BachelorThesis.ViewModels
             try
             {
                 Questions.Clear();
-                object responce = await QuestionsService.DoQuestionsGetRequest();
+                object responce = await QuestionsService.DoQuestionsGetRequest(LessonId);
 
                 if (responce is ErrorMessage)
                 {
