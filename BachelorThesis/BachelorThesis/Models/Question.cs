@@ -11,7 +11,7 @@ namespace BachelorThesis.Models
         public DateTime DateTime { get; set; }
         public int? LessonId { get; set; }
         public string UserId { get; set; }
-        public List<Answer> Answers { get; set; }
+        public string UserName { get; set; }
 
     }
 }

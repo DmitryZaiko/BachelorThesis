@@ -17,11 +17,11 @@ namespace BachelorThesis.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AnswersPage : ContentPage
 	{
-        AnswersViewModel viewModel;
+        AnswersListViewModel viewModel;
 		public AnswersPage (Question question)
 		{
 			InitializeComponent ();
-            viewModel = new AnswersViewModel() { Question = question };
+            viewModel = new AnswersListViewModel() { QuestionViewModel = new QuestionViewModel(question)};
             this.BindingContext = viewModel;
 		}
 
@@ -34,7 +34,7 @@ namespace BachelorThesis.Views
                 {
                     Body = answerEditor.Text,
                     UserId = user.Id,
-                    QuestionId = viewModel.Question.Id
+                    QuestionId = viewModel.QuestionViewModel.Question.Id
                 };
                 answerEditor.Text = null;
                 var answer = await AnswersService.DoAnswersAddRequest(newAnswer);
@@ -49,8 +49,12 @@ namespace BachelorThesis.Views
 
         async void OnAnswerSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Answer;
-            answerEditor.Text = item.BodyPreview;
+            var item = args.SelectedItem as AnswerViewModel;
+
+            if (item == null) return;
+
+            item.IsExpanded = !item.IsExpanded;
+            AnswersListView.SelectedItem = null;
         }
 
         protected override void OnAppearing()

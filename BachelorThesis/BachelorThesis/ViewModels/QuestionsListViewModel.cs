@@ -11,13 +11,13 @@ using Xamarin.Forms;
 
 namespace BachelorThesis.ViewModels
 {
-    public class QuestionsViewModel : BaseViewModel
+    public class QuestionsListViewModel : BaseViewModel
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Command LoadQuestionsCommand { get; set; }
         public int? LessonId { get; set; }
 
-        public QuestionsViewModel()
+        public QuestionsListViewModel()
         {
             Questions = new ObservableCollection<Question>();
             LoadQuestionsCommand = new Command(async (args) => {
@@ -59,7 +59,7 @@ namespace BachelorThesis.ViewModels
                 }
 
 
-                MessagingCenter.Send<QuestionsViewModel>(this, "QuestionsLoaded");
+                MessagingCenter.Send<QuestionsListViewModel>(this, "QuestionsLoaded");
             }
             catch (Exception ex)
             {

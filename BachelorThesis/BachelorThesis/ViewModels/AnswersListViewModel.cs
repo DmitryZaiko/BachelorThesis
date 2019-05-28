@@ -4,21 +4,26 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BachelorThesis.ViewModels
 {
-    class AnswersViewModel : BaseViewModel
+    class AnswersListViewModel : BaseViewModel
     {
-        public Question Question { get; set; }
-        public ObservableCollection<Answer> Answers { get; set; }
+        public QuestionViewModel QuestionViewModel { get; set; }
+        public ObservableCollection<AnswerViewModel> Answers { get; set; }
         public Command LoadAnswersCommand { get; set; }
+        public Answer AnswerSelected { get; set; }
 
-        public AnswersViewModel()
+
+
+
+        public AnswersListViewModel()
         {
-            Answers = new ObservableCollection<Answer>();
+            Answers = new ObservableCollection<AnswerViewModel>();
             LoadAnswersCommand = new Command(async (args) => {
                 await ExecuteLoadAnswersCommand();
             });
@@ -34,7 +39,8 @@ namespace BachelorThesis.ViewModels
             try
             {
                 Answers.Clear();
-                object responce = await AnswersService.DoAnswersGetRequest(Question.Id);
+                var id = QuestionViewModel.Question.Id;
+                object responce = await AnswersService.DoAnswersGetRequest(id);
 
                 if (responce is ErrorMessage)
                 {
@@ -46,11 +52,11 @@ namespace BachelorThesis.ViewModels
                     var answers = responce as IEnumerable<Answer>;
                     foreach (var answer in answers)
                     {
-                        Answers.Add(answer);
+                        Answers.Add(new AnswerViewModel(answer));
                     }
                 }
 
-
+                OnPropertyChanged("IsExpanded");
                 //MessagingCenter.Send<AnswersViewModel>(this, "AnswersLoaded");
             }
             catch (Exception ex)

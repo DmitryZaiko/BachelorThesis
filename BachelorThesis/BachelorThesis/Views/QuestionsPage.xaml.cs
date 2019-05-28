@@ -17,10 +17,10 @@ namespace BachelorThesis.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuestionsPage : ContentPage
     {
-        QuestionsViewModel viewModel;
+        QuestionsListViewModel viewModel;
         public QuestionsPage(int? lessonId = null)
         {
-            viewModel = new QuestionsViewModel() { LessonId = lessonId};
+            viewModel = new QuestionsListViewModel() { LessonId = lessonId};
             BindingContext = viewModel;
             InitializeComponent();
         }

@@ -16,7 +16,7 @@ namespace BachelorThesis.Views
     public partial class NewItemPage : ContentPage
     {
         public Question Question { get; set; }
-        public QuestionsViewModel viewModel { get; set; }
+        public QuestionsListViewModel viewModel { get; set; }
 
         public NewItemPage(int? lessonId)
         {
