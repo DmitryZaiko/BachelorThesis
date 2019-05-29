@@ -1,6 +1,7 @@
 ﻿using BachelorThesis.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace BachelorThesis.ViewModels
     public class QuizViewModel : ItemsViewModel
     {
         public Queue<Item> Quizes { get; set; }
+        public ObservableCollection<QuizAnswerViewModel> Answers { get; set; }
         public Command LoadPageCommand;
         private string question;
         private int rightAnswer;
@@ -19,9 +21,15 @@ namespace BachelorThesis.ViewModels
         public QuizViewModel(URLHttpParams httpParams)
         {
             PageType = ItemType.QuizAnswer;
+            Answers = new ObservableCollection<QuizAnswerViewModel>();
             LoadPageCommand = new Command(async () => await ExcuteLoadPageCommand(httpParams));
             MessagingCenter.Subscribe<ItemsViewModel>(this, "ItemsLoaded", (sender) => {
                Item i = Items.Where(x => ((QuizAnswer)x).IsRight == 0).First();
+               foreach(var item in Items)
+               {
+                    var quizAnswer = new QuizAnswerViewModel(item as QuizAnswer);
+                    Answers.Add(quizAnswer);
+               }
                RightAnswer = i.Id;
             });
         }

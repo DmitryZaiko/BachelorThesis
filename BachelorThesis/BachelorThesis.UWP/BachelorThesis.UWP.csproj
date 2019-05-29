@@ -104,6 +104,10 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ic_code_white_24dp.png" />
+    <Content Include="ic_comment_white_24dp.png" />
+    <Content Include="ic_help_outline_white_24dp.png" />
+    <Content Include="ic_send_white_18dp.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />

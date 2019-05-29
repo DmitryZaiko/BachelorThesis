@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BachelorThesis.Views.QuestionsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" >
+        <ToolbarItem Text="Pajautāt" Clicked="AddItem_Clicked" >
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -16,7 +16,8 @@
             <ListView x:Name="QuestionsListView"
                 ItemsSource="{Binding Questions}"
                 VerticalOptions="FillAndExpand"
-                HasUnevenRows="False"
+                HasUnevenRows="True"
+                SeparatorColor="Transparent"
                 RefreshCommand="{Binding LoadQuestionsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -25,15 +26,35 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Header}" 
-                                    Style="{DynamicResource ListItemTextStyle}" 
-                                    FontSize="16" />
-                                <Label Text="{Binding Body}" 
-                                    Style="{DynamicResource ListItemDetailTextStyle}"
-                                    LineBreakMode="TailTruncation"
-                                    FontSize="13" />
-                            </StackLayout>
+                            <Frame Margin="10,2,10,2" Padding="5,2,5,5">
+                                <StackLayout >
+                                    <Label Style="{DynamicResource ListItemTextStyle}" 
+                                           HorizontalOptions="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding UserName}"
+                                                      FontSize="Small"
+                                                      FontAttributes="Italic"/>
+                                                <Span Text=" | " 
+                                                      FontSize="Small"
+                                                      TextColor="LightGray"/>
+                                                <Span Text="{Binding DateTime}"
+                                                      TextColor="LightGray"
+                                                      FontSize="Micro"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding Header}" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="Large"
+                                           TextColor="#3c3c3c"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Body}" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           LineBreakMode="TailTruncation"
+                                           FontSize="Medium" />
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

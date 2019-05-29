@@ -149,11 +149,14 @@
                    Margin="10,0"
                    Grid.Column="0" Grid.Row="3"/>
 
-            <Button Grid.Column="1" Grid.Row="2" Margin="10,10"
-                    BackgroundColor="#005551"
-                    Clicked="OnAnswerButtonClicked"
-                    VerticalOptions="Center" 
-                    CornerRadius="100"/>
+            <ImageButton Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"
+                         BackgroundColor="#005551" 
+                         VerticalOptions="Center" 
+                         CornerRadius="100"
+                         Margin="15,0"
+                         Padding="0,12"
+                         Clicked="OnAnswerButtonClicked"
+                         Source="ic_send_white_18dp.png" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

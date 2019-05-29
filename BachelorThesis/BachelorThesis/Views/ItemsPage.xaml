@@ -54,15 +54,15 @@
         <ImageButton Grid.Row="1" Grid.Column="0" 
                      BackgroundColor="#3d827d" 
                      Clicked="OnQuestionsButtonClicked"
-                     Source="questions.png"/>
+                     Source="ic_comment_white_24dp.png"/> 
         <ImageButton Grid.Row="1" Grid.Column="1" 
                      BackgroundColor="#3d827d" 
-                     Source="compiler.png" />
+                     Source="ic_code_white_24dp.png" />
         <ImageButton x:Name="quizButton"
                      IsVisible="False"
                      IsEnabled="False"
                      Clicked="OnQuizButtonClicked"
-                     Source="quiz.png">
+                     Source="ic_help_outline_white_24dp.png">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal">

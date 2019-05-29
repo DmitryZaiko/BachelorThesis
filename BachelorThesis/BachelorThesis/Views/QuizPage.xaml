@@ -4,9 +4,12 @@
              x:Class="BachelorThesis.Views.QuizPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Question}" FontSize="Medium" HorizontalOptions="Center"/>
+            <Label Text="{Binding Question}" FontSize="Large" 
+                   TextColor="#3c3c3c" HorizontalOptions="Center"
+                   Margin="0,150,0,10"/>
             <ListView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding Answers}"
+                SeparatorColor="Transparent"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
@@ -18,11 +21,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}"
-                                    Style="{DynamicResource ListItemTextStyle}" 
-                                    FontSize="16" />
-                            </StackLayout>
+                            <Frame Margin="25, 5" BackgroundColor="{Binding AnswerColor}">
+                                <Label Text="{Binding QuizAnswer.Name}"
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="16" />
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

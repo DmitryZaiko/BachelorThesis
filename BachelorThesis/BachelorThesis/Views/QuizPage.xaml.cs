@@ -44,12 +44,14 @@ namespace BachelorThesis.Views
 
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            if (IsComplete) return;
+            var item = args.SelectedItem as QuizAnswerViewModel;
 
-            var item = args.SelectedItem as Item;
-            if (viewModel.RightAnswer == item.Id)
+            if (item == null) return;
+            item.IsItemSelected = true;
+
+            if (viewModel.RightAnswer == item.QuizAnswer.Id)
             {
-                IsComplete = true;
+                ItemsListView.IsEnabled = false;
                 Reaction.Text = "Correct!";
                 VisualStateManager.GoToState(Reaction, "Correct");
                 ShowNextButton();
@@ -59,25 +61,43 @@ namespace BachelorThesis.Views
                 Reaction.Text = "False!";
                 VisualStateManager.GoToState(Reaction, "Incorrect");
             };
+            ItemsListView.SelectedItem = null;
         }
 
         protected override bool OnBackButtonPressed()
         {
-            for (int i = 0; i < possition; i++)
-                Navigation.PopModalAsync();
+            int numModals = Application.Current.MainPage.Navigation.ModalStack.Count;
+            for (int currModal = 0; currModal < numModals; currModal++)
+            {
+                Application.Current.MainPage.Navigation.PopModalAsync(false);
+            }
             return true;
         }
 
         void ShowNextButton()
         {
-            if (possition == count) return;
+
             nextButton.IsVisible = true;
-            nextButton.Text += " (" + possition++ + "/" + count + ")";
+            if (possition == count) {
+                nextButton.Text = "Pabeigt";
+                IsComplete = true;
+            }
+            else
+            {
+                nextButton.Text += " (" + possition++ + "/" + count + ")";
+            }
+
         }
 
         async void OnNextButtonClicked(object sender, System.EventArgs e)
         {
+            if (IsComplete)
+            {
+                OnBackButtonPressed();
+                return;
+            }
             IsNewPage = false;
+            viewModel.Answers.Clear();
             await Navigation.PushModalAsync(new QuizPage(viewModel) { IsNewPage = false } );
         }
 
