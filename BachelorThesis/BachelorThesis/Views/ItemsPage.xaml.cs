@@ -84,11 +84,13 @@ namespace BachelorThesis.Views
             if(viewModel.PageType == ItemType.Content)
             {
                 var lessonId = viewModel.Items[0].Id;
-                await Navigation.PushAsync(new QuestionsPage(lessonId));
+                await Navigation.PushAsync(new QuestionsPage(lessonId)
+                                            {Title = "Par: " + Title });
             }
             else
             {
-                await Navigation.PushAsync(new QuestionsPage());
+                await Navigation.PushAsync(new QuestionsPage()
+                                            { Title = "Jautājumi"});
             }
                 
         }

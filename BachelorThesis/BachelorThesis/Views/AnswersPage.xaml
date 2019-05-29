@@ -2,24 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BachelorThesis.Views.AnswersPage">
+    <ContentPage.Resources>
+        <Style TargetType="Entry" x:Key="ValidStatesStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="ValidStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Gray" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Invalid">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <Grid RowSpacing="1" ColumnSpacing="0">
+        <Grid RowSpacing="1" ColumnSpacing="0" VerticalOptions="StartAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="95"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="12"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-
-
-
             <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
-                  RowSpacing="0" ColumnSpacing="0">
+                  RowSpacing="0" ColumnSpacing="0" VerticalOptions="Fill">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -29,32 +50,46 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <BoxView BackgroundColor="Gray" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"/>
+                <Image Source="avatar_icon.png" 
+                   Grid.Column="0" 
+                   Grid.RowSpan="3"
+                   HeightRequest="50"/>
                 <Label Text="{Binding QuestionViewModel.Question.UserName}" 
                        Grid.Column="1" Grid.Row="0"
+                       Margin="10,0,0,0" 
                        FontSize="Small" 
                        FontAttributes="Italic"
                        HorizontalOptions="Start"
                        VerticalOptions="FillAndExpand"/>
                 <Label Text="{Binding QuestionViewModel.Question.DateTime}" 
                        Grid.Column="2" Grid.Row="0"
+                       Margin="0,0,5,0" 
                        FontSize="Small" 
                        TextColor="LightGray" 
                        HorizontalOptions="End"
                        VerticalOptions="FillAndExpand"/>
                 <Label Text="{Binding QuestionViewModel.Question.Header}"
                        FontSize="Medium"
+                       Margin="10,0,10,0" 
                        FontAttributes="Bold"
                        VerticalOptions="FillAndExpand"
                        Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
-                <Label LineBreakMode="CharacterWrap"
+                <Label x:Name="questionLabel"
+                       Text="{Binding QuestionViewModel.Body}"
+                       Margin="10,0,10,0" 
                        Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"
-                       BackgroundColor="Aqua"
-                       VerticalOptions="FillAndExpand"
-                       Text="{Binding QuestionViewModel.Body}"/>
+                       VerticalOptions="FillAndExpand"/>
+                <Label x:Name="questionTagLabel"
+                       Text="{Binding QuestionViewModel.MoreTag}"
+                       FontSize="Small"
+                       Margin="10,0,10,0"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding QuestionViewModel.HasPreview}"
+                       Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
             </Grid>
             <ListView x:Name="AnswersListView" IsVisible="{Binding IsExpanded}"
                 ItemsSource="{Binding Answers}"
+                BackgroundColor="#ededed"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="True"
                 RefreshCommand="{Binding LoadAnswersCommand}"
@@ -75,21 +110,50 @@
                                     FontAttributes="Bold"/>
                                 <Frame CornerRadius="5"
                                 Padding="8,8"
-                                BackgroundColor="AntiqueWhite"
-                                Margin="15,0,15,15" 
-                                HasShadow="False">
-                                    <Label Text="{Binding Body}"
-                                    Style="{DynamicResource ListItemDetailTextStyle}"
-                                    FontSize="Medium" />
+                                BackgroundColor="White"
+                                Margin="15,0,15,15"    
+                                HasShadow="True">
+                                    <StackLayout>
+                                        <Label Text="{Binding Answer.DateTime}"
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="Small" 
+                                               HorizontalOptions="End"/>
+                                        <Label Text="{Binding Body}"
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="Medium"/>
+                                        <Label Text="{Binding MoreTag}"
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="Small"
+                                               FontAttributes="Bold"
+                                               IsVisible="{Binding IsTagVisible}"/>
+                                    </StackLayout>
                                 </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Editor x:Name="answerEditor" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.Row="2"/>
-            <Button Grid.Column="1" Grid.Row="2" Margin="8,20" Clicked="OnAnswerButtonClicked" CornerRadius="100"/>
 
+            <Editor x:Name="answerEditor" 
+                    Grid.Column="0" Grid.Row="2"
+                    VerticalOptions="Fill" 
+                    TextChanged="OnAnswerEditorChanged"
+                    AutoSize="TextChanges"/>
+            
+            <Label x:Name="counterLabel"
+                   BindingContext="{x:Reference answerEditor}"
+                   Text="{Binding Path=Text.Length}"
+                   Style="{StaticResource Key=ValidStatesStyle}"
+                   HorizontalOptions="End"
+                   FontSize="Micro"
+                   Margin="10,0"
+                   Grid.Column="0" Grid.Row="3"/>
+
+            <Button Grid.Column="1" Grid.Row="2" Margin="10,10"
+                    BackgroundColor="#005551"
+                    Clicked="OnAnswerButtonClicked"
+                    VerticalOptions="Center" 
+                    CornerRadius="100"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

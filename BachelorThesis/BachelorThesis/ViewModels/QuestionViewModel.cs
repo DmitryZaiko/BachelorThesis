@@ -35,6 +35,19 @@ namespace BachelorThesis.ViewModels
             }
         }
 
+        public string MoreTag
+        {
+            get {
+                if (!IsExpanded)
+                {
+                    return "Lasīt vairāk";
+                }
+                else
+                {
+                    return "Sagriezt";
+                }
+            }
+        }
 
         public string Body
         {
@@ -51,7 +64,7 @@ namespace BachelorThesis.ViewModels
         {
             get
             {
-                return Question.Body.Length > 256;
+                return Question.Body.Length > 128;
             }
         }
 
@@ -59,7 +72,7 @@ namespace BachelorThesis.ViewModels
         {
             get
             {
-                return HasPreview ? Question.Body.Remove(256) : Question.Body;
+                return HasPreview ? Question.Body.Remove(128) : Question.Body;
             }
         }
 

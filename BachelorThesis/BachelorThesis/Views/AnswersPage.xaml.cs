@@ -18,18 +18,38 @@ namespace BachelorThesis.Views
 	public partial class AnswersPage : ContentPage
 	{
         AnswersListViewModel viewModel;
+        private static readonly int MAX_LENGTH = 1024;
 		public AnswersPage (Question question)
 		{
 			InitializeComponent ();
+            Title = question.Header;
             viewModel = new AnswersListViewModel() { QuestionViewModel = new QuestionViewModel(question)};
+
+            TapGestureRecognizer textTap = new TapGestureRecognizer();
+            TapGestureRecognizer tagTap = new TapGestureRecognizer();
+
+            textTap.Tapped += OnLabelTapped;
+            tagTap.Tapped += OnLabelTapped;
+
+            questionLabel.GestureRecognizers.Add(textTap);
+            questionTagLabel.GestureRecognizers.Add(tagTap);
+
             this.BindingContext = viewModel;
-		}
+        }
+
+        private void OnLabelTapped(object sender, EventArgs e)
+        {
+            viewModel.QuestionViewModel.IsExpanded = !viewModel.QuestionViewModel.IsExpanded;
+        }
 
         async void OnAnswerButtonClicked(object sender, System.EventArgs e)
         {
             User user = JsonConvert.DeserializeObject<User>(Settings.UserSettings);
             if (user != null)
             {
+                if (answerEditor.Text == null || answerEditor.Text.Length == 0
+                    || answerEditor.Text.Length > MAX_LENGTH) return;
+
                 Answer newAnswer = new Answer()
                 {
                     Body = answerEditor.Text,
@@ -47,7 +67,13 @@ namespace BachelorThesis.Views
 
         }
 
-        async void OnAnswerSelected(object sender, SelectedItemChangedEventArgs args)
+        void SetState(bool isValid, VisualElement element)
+        {
+            string visualState = isValid ? "Normal" : "Invalid";
+            VisualStateManager.GoToState(element, visualState);
+        }
+
+        void OnAnswerSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as AnswerViewModel;
 
@@ -63,6 +89,15 @@ namespace BachelorThesis.Views
 
             if (viewModel.Answers.Count == 0)
                 viewModel.LoadAnswersCommand.Execute(null);
+        }
+
+        private void OnAnswerEditorChanged(object sender, TextChangedEventArgs e)
+        {
+            if (answerEditor.Text == null) return;
+            if (answerEditor.Text.Length > MAX_LENGTH && counterLabel.TextColor == Color.Gray)
+                SetState(false, counterLabel);
+            else if (answerEditor.Text.Length <= MAX_LENGTH && counterLabel.TextColor == Color.Red)
+                SetState(true, counterLabel);
         }
     }
 }

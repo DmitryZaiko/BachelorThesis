@@ -13,13 +13,11 @@ namespace BachelorThesis.ViewModels
 {
     class AnswersListViewModel : BaseViewModel
     {
+
         public QuestionViewModel QuestionViewModel { get; set; }
         public ObservableCollection<AnswerViewModel> Answers { get; set; }
         public Command LoadAnswersCommand { get; set; }
         public Answer AnswerSelected { get; set; }
-
-
-
 
         public AnswersListViewModel()
         {

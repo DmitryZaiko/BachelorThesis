@@ -9,6 +9,7 @@ namespace BachelorThesis.ViewModels
     {
         public Answer answer;
         private bool isExpanded;
+        private string moreTag = "Lasīt vairāk";
 
         public Answer Answer {
             get
@@ -31,9 +32,18 @@ namespace BachelorThesis.ViewModels
             {
                 SetProperty(ref isExpanded, value);
                 OnPropertyChanged("Body");
+                OnPropertyChanged("IsTagVisible");
             }
         }
 
+        public string MoreTag
+        {
+            get { return moreTag; }
+        }
+        public bool IsTagVisible
+        {
+            get { return HasPreview && !IsExpanded; }
+        }
 
         public string Body
         {
@@ -58,7 +68,7 @@ namespace BachelorThesis.ViewModels
         {
             get
             {
-                return HasPreview ? Answer.Body.Remove(256) : Answer.Body;
+                return HasPreview ? Answer.Body.Remove(256) + " ..." : Answer.Body;
             }
         }
 
