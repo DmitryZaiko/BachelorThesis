@@ -104,9 +104,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="autorization_logo.png" />
     <Content Include="ic_code_white_24dp.png" />
     <Content Include="ic_comment_white_24dp.png" />
     <Content Include="ic_help_outline_white_24dp.png" />
+    <Content Include="ic_question_answer_white_24dp.png" />
     <Content Include="ic_send_white_18dp.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
@@ -136,6 +138,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="rtu_logo.png" />
     <Content Include="xamarin_logo.png" />
     <Content Include="add.png" />
     <Content Include="save.png" />

@@ -34,77 +34,85 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
+        <Frame Padding="0,0,5,0" Margin="10,10">
 
-            <Label Text="Konta izveide" FontSize="Large"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Konta izveide" FontSize="Large" TextColor="#3c3c3c"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2"/>
-            <Label Text="{Binding ErrorMessage}" FontSize="Medium" 
-                   TextColor="DarkRed" HorizontalOptions="CenterAndExpand"
-                   Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"/>
-            <ActivityIndicator x:Name="registerActivity" IsRunning="False"
-                   Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"/>
-            <Label Text="Vārds*" FontSize="Medium" 
+                   Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2" FontAttributes="Bold"/>
+                <Label Text="Vārds*" FontSize="Small" 
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"  Grid.Row="1"/>
+                <Label Text="Uzvārds*" FontSize="Small" 
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="2"/>
-            <Label Text="Uzvārds*" FontSize="Medium" 
+                <Label Text="E-pasts*" FontSize="Small" 
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="3"/>
-            <Label Text="E-pasts*" FontSize="Medium" 
+                <Label Text="Tālruņis" FontSize="Small"  
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="4"/>
-            <Label Text="Tālruņis" FontSize="Medium" 
+                <Label Text="Parole*" FontSize="Small" 
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                    Grid.Column="0"  Grid.Row="5"/>
-            <Label Text="Parole*" FontSize="Medium" 
-                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"  Grid.Row="6"/>
 
-            <Entry x:Name="firstNameEntry" Opacity="0.5" VerticalOptions="Center"
+                <Entry x:Name="firstNameEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding User.FirstName}" TextChanged="OnNameChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"
-                   Placeholder="Vārds" Grid.Column="1"  Grid.Row="2"/>
-            <Entry x:Name="lastNameEntry" Opacity="0.5" VerticalOptions="Center"
+                   Placeholder="Vārds" Grid.Column="1"  Grid.Row="1"/>
+                <Entry x:Name="lastNameEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding User.LastName}" TextChanged="OnNameChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"
-                   Placeholder="Uzvārds" Grid.Column="1"  Grid.Row="3"/>
-            <Entry x:Name="emailEntry" Opacity="0.5" VerticalOptions="Center"
+                   Placeholder="Uzvārds" Grid.Column="1"  Grid.Row="2"/>
+                <Entry x:Name="emailEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding User.Email}" TextChanged="OnEmailChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"                   
-                   Placeholder="E-pasts" Grid.Column="1"  Grid.Row="4"/>
-            <Entry x:Name="mobilePhoneEntry" Opacity="0.5" VerticalOptions="Center"
+                   Placeholder="E-pasts" Grid.Column="1"  Grid.Row="3"/>
+                <Entry x:Name="mobilePhoneEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding User.MobileNumber}" TextChanged="OnPhoneNumberChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"                  
-                   Placeholder="Tālruņa numurs" Grid.Column="1"  Grid.Row="5"/>
-            <Entry x:Name="passwordEntry" Opacity="0.5" VerticalOptions="Center"
+                   Placeholder="Tālruņa numurs" Grid.Column="1"  Grid.Row="4"/>
+                <Entry x:Name="passwordEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding User.Password}"
                    Style="{StaticResource Key=ValidStatesStyle}"
-                   Placeholder="Parole" Grid.Column="1"  Grid.Row="6"/>
-            <Entry x:Name="repeatEntry" Opacity="0.5" VerticalOptions="Center"
+                   Placeholder="Parole" Grid.Column="1"  Grid.Row="5"/>
+                <Entry x:Name="repeatEntry" Opacity="0.5" VerticalOptions="Center"
                    Text="{Binding Repeat}" TextChanged="OnRepeatChanged"
                    Style="{StaticResource Key=ValidStatesStyle}"
-                   Placeholder="Apstipriniet paroli" Grid.Column="1"  Grid.Row="7"/>
-            
+                   Placeholder="Apstipriniet paroli" Grid.Column="1"  Grid.Row="6"/>
+                <Label Text="{Binding ErrorMessage}" FontSize="Medium" 
+                   TextColor="DarkRed" HorizontalOptions="Center" VerticalOptions="Center"
+                   Grid.Column="0"  Grid.Row="7" Grid.ColumnSpan="2"/>
 
-            <Button Text="Izveidot" Clicked="OnRegisterClicked" Grid.Row="8" Grid.ColumnSpan="2"/>
+                <Button Text="Izveidot" TextColor="White"
+                        BackgroundColor="#005551"
+                        Margin="10,0,10,10"
+                        Clicked="OnRegisterClicked" 
+                        Grid.Row="8" Grid.ColumnSpan="2"/>
 
-        </Grid>
+                <ActivityIndicator x:Name="registerActivity" IsRunning="False"
+                   HeightRequest="100" WidthRequest="100"
+                   VerticalOptions="Center" HorizontalOptions="Center"
+                   Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="9"/>
 
+            </Grid>
+        </Frame>
 
     </ContentPage.Content>
 </ContentPage>

@@ -45,6 +45,7 @@ namespace BachelorThesis.Views
 
         private void OnLoginButtonClicked(object sender, EventArgs e)
         {
+            if (loginActivity.IsRunning) return;
             loginActivity.IsRunning = true;
             viewModel.LoginCommand.Execute(null);
         }

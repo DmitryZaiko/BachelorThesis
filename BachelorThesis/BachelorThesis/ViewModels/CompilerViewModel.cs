@@ -10,9 +10,11 @@ namespace BachelorThesis.ViewModels
     {
         public Command GetUidCommand { get; set; }
         public Command PostCodeCommand { get; set; }
-        private HtmlWebViewSource result = new HtmlWebViewSource() { Html = "Default Text"};
+        private string result = "  Programmas izvade";
+        private string text = "  using System.IO;\n  using System;\n\n  class Program\n  {\n    static void " +
+                              "Main()\n    {\n        Console.WriteLine(\"Hello, World!\");\n    }\n      \n  }";
 
-        public HtmlWebViewSource Result {
+        public string Result {
             get
             {
                 return result;
@@ -23,6 +25,19 @@ namespace BachelorThesis.ViewModels
             }
         }
 
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+            set
+            {
+                SetProperty(ref text, value);
+            }
+        }
+
+
         public CompilerViewModel()
         {
             GetUidCommand  = new Command(async (args) => {
@@ -31,7 +46,8 @@ namespace BachelorThesis.ViewModels
 
             PostCodeCommand = new Command(async (args) => {
                 var html = await CompilerService.DoPostCodeRequest(args as string) as string;
-                Result = new HtmlWebViewSource() { Html = html };
+                Result = html;
+                MessagingCenter.Send<CompilerViewModel>(this, "CompileActivityEnded");
             });
         }
     }

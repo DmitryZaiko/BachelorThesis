@@ -100,6 +100,7 @@ namespace BachelorThesis.Views
 
         private void OnRegisterClicked(object sender, EventArgs e)
         {
+            if (registerActivity.IsRunning) return;
             registerActivity.IsRunning = true;
             if (IsAllEntriesValid())
                 viewModel.LoginCommand.Execute(null);

@@ -52,13 +52,13 @@ namespace BachelorThesis.Views
             if (viewModel.RightAnswer == item.QuizAnswer.Id)
             {
                 ItemsListView.IsEnabled = false;
-                Reaction.Text = "Correct!";
+                Reaction.Text = "Pareizi!";
                 VisualStateManager.GoToState(Reaction, "Correct");
                 ShowNextButton();
             }
             else
             {
-                Reaction.Text = "False!";
+                Reaction.Text = "Nepareizi! Pamēģini vēlreiz...";
                 VisualStateManager.GoToState(Reaction, "Incorrect");
             };
             ItemsListView.SelectedItem = null;

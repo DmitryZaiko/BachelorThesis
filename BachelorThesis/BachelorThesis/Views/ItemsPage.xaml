@@ -39,7 +39,9 @@
                                 </Image>
                                 <StackLayout>
                                     <Label Text="{Binding Name}" 
-                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    TextColor="#3c3c3c"
+                                    FontAttributes="Bold"
                                     FontSize="16" />
                                     <Label Text="{Binding Description}" 
                                     Style="{DynamicResource ListItemDetailTextStyle}"
@@ -54,7 +56,7 @@
         <ImageButton Grid.Row="1" Grid.Column="0" 
                      BackgroundColor="#3d827d" 
                      Clicked="OnQuestionsButtonClicked"
-                     Source="ic_comment_white_24dp.png"/> 
+                     Source="ic_question_answer_white_24dp.png"/> 
         <ImageButton Grid.Row="1" Grid.Column="1" 
                      BackgroundColor="#3d827d"
                      Clicked="OnCompilerButtonClicked"

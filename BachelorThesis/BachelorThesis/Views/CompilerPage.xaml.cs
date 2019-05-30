@@ -18,6 +18,9 @@ namespace BachelorThesis.Views
 		{
 			InitializeComponent ();
             viewModel = new CompilerViewModel();
+            MessagingCenter.Subscribe<CompilerViewModel>(this, "CompileActivityEnded", (sender) => {
+                compilingActivity.IsRunning = false;
+            });
             this.BindingContext = viewModel;
 		}
 
@@ -29,6 +32,8 @@ namespace BachelorThesis.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            if (compilingActivity.IsRunning) return;
+            compilingActivity.IsRunning = true;
             var code = codeEditor.Text;
             viewModel.PostCodeCommand.Execute(code);
         }

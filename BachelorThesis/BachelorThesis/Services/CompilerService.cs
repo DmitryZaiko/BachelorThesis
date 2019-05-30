@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -74,6 +75,7 @@ namespace BachelorThesis.Services
 
             HttpResponseMessage response = await client.SendAsync(request);
             var html = await response.Content.ReadAsStringAsync();
+            html = html.Substring(139);
             return html;
             
         }

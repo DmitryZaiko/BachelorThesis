@@ -180,4 +180,19 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_code_white_24pt%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24pt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24pt%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24pt%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rtu_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\autorization_logo.png" />
+  </ItemGroup>
 </Project>
