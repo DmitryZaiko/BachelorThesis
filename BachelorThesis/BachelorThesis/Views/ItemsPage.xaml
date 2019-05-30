@@ -56,7 +56,8 @@
                      Clicked="OnQuestionsButtonClicked"
                      Source="ic_comment_white_24dp.png"/> 
         <ImageButton Grid.Row="1" Grid.Column="1" 
-                     BackgroundColor="#3d827d" 
+                     BackgroundColor="#3d827d"
+                     Clicked="OnCompilerButtonClicked"
                      Source="ic_code_white_24dp.png" />
         <ImageButton x:Name="quizButton"
                      IsVisible="False"

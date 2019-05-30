@@ -4,30 +4,42 @@
              x:Class="BachelorThesis.Views.MenuPage"
              Title="Menu">
     <StackLayout VerticalOptions="FillAndExpand">
-        <Grid HeightRequest="80">
+        <Grid HeightRequest="80" BackgroundColor="#005551">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="avatar_icon.png" 
+
+            <Frame BackgroundColor="White" CornerRadius="150"                    
+                   Grid.Column="0" 
+                   Padding="0,0"
+                   Margin="30,10"
+                   Grid.RowSpan="2">
+                <Image Source="avatar_icon.png" 
                    Grid.Column="0" 
                    Grid.RowSpan="2"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"/>
+            </Frame>
+
             <Label Text="{Binding FullUserName}" 
                    Grid.Row="0"
                    Grid.Column="1"
                    FontSize="Medium"
+                   TextColor="White"
+                   FontAttributes="Italic"
                    HorizontalOptions="StartAndExpand"
                    VerticalOptions="CenterAndExpand"/>
             <Label x:Name="profileOption" Text="Autorizēties" 
                    Grid.Row="1"
                    Grid.Column="1"
+                   TextColor="White"
                    FontSize="Small"
+                   Margin="0,0,0,10"
                    HorizontalOptions="StartAndExpand"
                    VerticalOptions="CenterAndExpand"/>
         </Grid>

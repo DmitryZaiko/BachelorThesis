@@ -79,6 +79,12 @@ namespace BachelorThesis.Views
             await Navigation.PushModalAsync(new QuizPage(httpParams));
         }
 
+        async void OnCompilerButtonClicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new CompilerPage());
+        }
+
+
         async void OnQuestionsButtonClicked(object sender, System.EventArgs e)
         {
             if(viewModel.PageType == ItemType.Content)

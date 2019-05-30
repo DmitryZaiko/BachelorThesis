@@ -25,6 +25,7 @@ namespace BachelorThesis.Helpers
     private const string LoginKey = "logged_in";
     private const string GuestKey = "guest";
     private const string UserKey = "user";
+    private const string CompilerUidKey = "compiler_uid";
     private static readonly string SettingsDefault = string.Empty;
 
     #endregion
@@ -38,6 +39,18 @@ namespace BachelorThesis.Helpers
         set
         {
             AppSettings.AddOrUpdateValue(LoginKey, value);
+        }
+    }
+
+    public static string CompilerUid
+    {
+        get
+        {
+            return AppSettings.GetValueOrDefault(CompilerUidKey, null);
+        }
+        set
+        {
+            AppSettings.AddOrUpdateValue(CompilerUidKey, value);
         }
     }
 
