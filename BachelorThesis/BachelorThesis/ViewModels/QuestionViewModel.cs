@@ -32,6 +32,7 @@ namespace BachelorThesis.ViewModels
             {
                 SetProperty(ref isExpanded, value);
                 OnPropertyChanged("Body");
+                OnPropertyChanged("MoreTag");
             }
         }
 
@@ -72,7 +73,7 @@ namespace BachelorThesis.ViewModels
         {
             get
             {
-                return HasPreview ? Question.Body.Remove(128) : Question.Body;
+                return HasPreview ? Question.Body.Remove(128) + " ..." : Question.Body;
             }
         }
 

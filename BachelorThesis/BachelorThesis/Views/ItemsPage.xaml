@@ -30,9 +30,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10" Orientation="Horizontal">
-                                <Image HeightRequest="100">
+                                <Image WidthRequest="150">
                                     <Image.Source>
-                                        <UriImageSource CachingEnabled="True" 
+                                        <UriImageSource CachingEnabled="True"
                                                     CacheValidity="1"
                                                     Uri="{Binding Image}"/>
                                     </Image.Source>

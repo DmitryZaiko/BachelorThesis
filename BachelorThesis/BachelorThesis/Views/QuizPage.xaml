@@ -11,6 +11,7 @@
                 ItemsSource="{Binding Answers}"
                 SeparatorColor="Transparent"
                 VerticalOptions="FillAndExpand"
+                HorizontalOptions="Center"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
@@ -23,7 +24,8 @@
                         <ViewCell>
                             <Frame Margin="25, 5" BackgroundColor="{Binding AnswerColor}">
                                 <Label Text="{Binding QuizAnswer.Name}"
-                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       HorizontalOptions="Center"
                                        FontSize="16" />
                             </Frame>
                         </ViewCell>

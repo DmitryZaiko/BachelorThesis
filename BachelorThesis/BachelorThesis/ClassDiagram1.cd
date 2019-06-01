@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BachelorThesis.Models.Answer">
+    <Position X="2.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAAgAAAAAAAQAAQAAAAQAAAA=</HashCode>
+      <FileName>Models\Answer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Content">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Content.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Course">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.HomeMenuItem">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\HomeMenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Item">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.ItemRecords&lt;T&gt;">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\ItemRecords.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Lesson">
+    <Position X="4.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Lesson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.ErrorMessage">
+    <Position X="4.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LoginError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Question">
+    <Position X="2.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAEAAAAABAAgAAAAAAAQAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.Quiz">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.QuizAnswer">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\QuizAnswer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.URLHttpParams">
+    <Position X="4.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAQAAACAJAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\URLHttpParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Models.User">
+    <Position X="8.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCEAAACAAAAAAAAQAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Services.AnswersService">
+    <Position X="2.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAA=</HashCode>
+      <FileName>Services\AnswersService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Services.AuthorizationService">
+    <Position X="8.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AuthorizationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Services.CompilerService">
+    <Position X="8.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Services\CompilerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Services.MainService">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAgAABAAAABAAAAAAEAAAAAQAQA=</HashCode>
+      <FileName>Services\MainService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BachelorThesis.Services.QuestionsService">
+    <Position X="4.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\QuestionsService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.AnswersListViewModel">
+    <Position X="30.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAABA=</HashCode>
+      <FileName>ViewModels\AnswersListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.AnswerViewModel">
+    <Position X="28.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAgBAAAAAQABAAAAEAAAAAAAAACAAgAAAAM=</HashCode>
+      <FileName>ViewModels\AnswerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.BaseViewModel">
+    <Position X="22.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAEAAIEAAAQBAgAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.CompilerViewModel">
+    <Position X="32.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAQAQAAAAAAIAQAACAAAAAA=</HashCode>
+      <FileName>ViewModels\CompilerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.ItemDetailViewModel">
+    <Position X="19.75" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="BachelorThesis.ViewModels.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="23.5" Y="4.228" />
+        <Point X="23.5" Y="5.125" />
+        <Point X="20.5" Y="5.125" />
+        <Point X="20.5" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ItemDetailViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.ItemsViewModel">
+    <Position X="21.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAABAAEAgAAAAAACAAAQAA=</HashCode>
+      <FileName>ViewModels\ItemsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.LoginViewModel">
+    <Position X="16.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCBAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAASAACAggA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.QuestionsListViewModel">
+    <Position X="25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAABABAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\QuestionsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.QuestionViewModel">
+    <Position X="26.75" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="BachelorThesis.ViewModels.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="23.5" Y="4.228" />
+        <Point X="23.5" Y="5.125" />
+        <Point X="27.438" Y="5.125" />
+        <Point X="27.438" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAgAAAAAAQABAAAAAAQAAAAEAACAAAAAAAE=</HashCode>
+      <FileName>ViewModels\QuestionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.QuizAnswerViewModel">
+    <Position X="23.25" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="BachelorThesis.ViewModels.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="23.5" Y="4.228" />
+        <Point X="23.5" Y="5.125" />
+        <Point X="24" Y="5.125" />
+        <Point X="24" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ViewModels\QuizAnswerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.QuizViewModel">
+    <Position X="21.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAAACAQQAAAAEQAAAABAAAAA=</HashCode>
+      <FileName>ViewModels\QuizViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.RegistrationViewModel">
+    <Position X="18" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQABAAEAAIAAAAAAAAAAAAAAAAABAAAAAAIAAACAAAA=</HashCode>
+      <FileName>ViewModels\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.ViewModels.UserViewModel">
+    <Position X="14.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModels\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.AnswersPage">
+    <Position X="23.25" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAAAAAgAAAAAAAAQMAAAAAEAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Views\AnswersPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.AboutPage">
+    <Position X="21.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AboutPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.CompilerPage">
+    <Position X="25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAQAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\CompilerPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.ItemDetailPage">
+    <Position X="25" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ItemDetailPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.ItemsPage">
+    <Position X="21.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAkAAAAAAAIQIAAAAAABAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ItemsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.LoginPage">
+    <Position X="18" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.MainPage">
+    <Position X="19.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACA=</HashCode>
+      <FileName>Views\MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.MenuPage">
+    <Position X="19.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAQAAAAAAAAABAAAAAAAAAAAIA=</HashCode>
+      <FileName>Views\MenuPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.NewItemPage">
+    <Position X="16" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAEAAAAAAAAAAI=</HashCode>
+      <FileName>Views\NewItemPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.QuestionsPage">
+    <Position X="23.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAQIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\QuestionsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.Views.RegistrationPage">
+    <Position X="18" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAABAAAAAAABAAwAAAAAAAAAAAAAAAAAAAAAME=</HashCode>
+      <FileName>Views\RegistrationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BachelorThesis.App">
+    <Position X="16" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BachelorThesis.Services.IDataStore&lt;T&gt;">
+    <Position X="6.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAABAAAABAAAAAAEAAAAAQAAA=</HashCode>
+      <FileName>Services\IDataStore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BachelorThesis.Models.MenuItemType">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\HomeMenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BachelorThesis.Models.ItemType">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAIAAAAIAACAAAAAAAAAAAAAAAAAQEAAA=</HashCode>
+      <FileName>Models\ItemType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

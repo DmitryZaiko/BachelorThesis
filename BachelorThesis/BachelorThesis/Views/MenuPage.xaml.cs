@@ -21,7 +21,7 @@ namespace BachelorThesis.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Galvenā" },
+                new HomeMenuItem {Id = MenuItemType.Browse, Title="Pārlūks" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="Informācija" }
             };
 
